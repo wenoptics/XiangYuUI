@@ -35,4 +35,7 @@ dependencies {
     compile 'com.flyco.animation:FlycoAnimation_Lib:1.0.0@aar'
     compile 'com.nineoldandroids:library:2.4.0'
 
+    /// circle imageView
+    compile 'de.hdodenhof:circleimageview:2.0.0'
+
 }

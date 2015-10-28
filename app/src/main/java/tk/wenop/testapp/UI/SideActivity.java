@@ -90,6 +90,9 @@ public class SideActivity extends AppCompatActivity
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
 
+                // TODO
+                //    如果没有登录，在这里跳转登录
+
                 //  在此处允许用户发内容
                 //    弹出窗口
                 final NewContentBottomDialog dialog = new NewContentBottomDialog(SideActivity.this);

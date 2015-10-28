@@ -29,6 +29,7 @@ public class NewContentBottomDialog extends BottomBaseDialog<NewContentBottomDia
     @Override
     public void setUiBeforShow() {
 
+        // TODO 绑定UI
        /* ll_wechat_friend_circle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
