@@ -20,8 +20,6 @@ android {
 }
 
 
-def AAVersion = '3.2'
-
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'

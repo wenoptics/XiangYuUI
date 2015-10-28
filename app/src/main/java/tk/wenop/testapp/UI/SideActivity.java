@@ -34,8 +34,7 @@ public class SideActivity extends AppCompatActivity
     private MainScreenChatAdapter mainActRVAdapter;
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mRVLayoutM;
-
-    protected ArrayList<MainScreenOverviewItem> mainActDataSet;
+    private ArrayList<MainScreenOverviewItem> mainActDataSet;
 
     private BaseAnimatorSet bas_in;
     private BaseAnimatorSet bas_out;
@@ -122,7 +121,7 @@ public class SideActivity extends AppCompatActivity
 
         // wenop-test
         //   测试增加几个item... 看看效果
-        mainActDataSet = new ArrayList<MainScreenOverviewItem>();
+        mainActDataSet = new ArrayList<>();
         MainScreenOverviewItem msovi_0 = new MainScreenOverviewItem();
         msovi_0.mNickName = "wenop";
         msovi_0.mLocation = "天津市";

@@ -20,6 +20,8 @@
         </activity>
         <activity android:name=".UI.PeopleDetailActivity" >
         </activity>
+        <activity android:name=".UI.CommentActivity" >
+        </activity>
     </application>
 
 </manifest>

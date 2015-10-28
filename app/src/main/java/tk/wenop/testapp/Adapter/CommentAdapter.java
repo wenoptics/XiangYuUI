@@ -13,15 +13,14 @@ import java.util.ArrayList;
 
 import tk.wenop.testapp.Overview.MainScreenOverviewItem;
 import tk.wenop.testapp.R;
-import tk.wenop.testapp.UI.CommentActivity;
 import tk.wenop.testapp.UI.PeopleDetailActivity;
 
 /**
  * Created by wenop_000 on 2015/10/12.
  */
-public class MainScreenChatAdapter extends RecyclerView.Adapter<MainScreenChatAdapter.ViewHolder> {
+public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.ViewHolder> {
 
-
+    private LayoutInflater inflater;
     private ArrayList<MainScreenOverviewItem> mDataset;
     protected Context mContext;
 
@@ -35,9 +34,6 @@ public class MainScreenChatAdapter extends RecyclerView.Adapter<MainScreenChatAd
         public TextView  mNickName;
         public TextView  mAudioTimeSec;
         public ImageView mAvatar;
-        public ImageView mContentPhoto;
-        public TextView  mLocation;
-        public TextView  mCommentCount;
         public TextView  mTime;
 
         public ViewHolder(View v) {
@@ -46,28 +42,25 @@ public class MainScreenChatAdapter extends RecyclerView.Adapter<MainScreenChatAd
 
             mNickName      = (TextView)  v.findViewById(R.id.textView_nickName        );
             mAudioTimeSec  = (TextView)  v.findViewById(R.id.textView_audioLength     );
-            mAvatar        = (ImageView) v.findViewById(R.id.imageView_avatar        );
-            mContentPhoto  = (ImageView) v.findViewById(R.id.imageView_contentPhoto  );
-            mLocation      = (TextView)  v.findViewById(R.id.textView_location        );
-            mCommentCount  = (TextView)  v.findViewById(R.id.textView_commentCount    );
+            mAvatar        = (ImageView) v.findViewById(R.id.imageView_avatar         );
             mTime          = (TextView)  v.findViewById(R.id.textView_time            );
 
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MainScreenChatAdapter(Context context, ArrayList<MainScreenOverviewItem> myDataset) {
+    public CommentAdapter(Context context, ArrayList<MainScreenOverviewItem> myDataset) {
         mDataset = myDataset;
         mContext = context;
+        inflater = LayoutInflater.from(mContext);
     }
 
     // Create new views (invoked by the layout manager)
     @Override
-    public MainScreenChatAdapter.ViewHolder onCreateViewHolder(final ViewGroup parent,
+    public CommentAdapter.ViewHolder onCreateViewHolder(final ViewGroup viewGroup,
                                                    int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.item_received_list__main_screen_chat, parent, false);
+        View v = inflater.inflate(R.layout.item_comment_list__comment, viewGroup, false);
 
         v.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,36 +83,20 @@ public class MainScreenChatAdapter extends RecyclerView.Adapter<MainScreenChatAd
         }
     };
 
-    // 点击评论按钮
-    private final View.OnClickListener onCommentClickListener = new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-            Intent intent = new Intent(mContext, CommentActivity.class);
-//            TODO 把相关信息传过去?
-//            intent.putExtra("BAR_CODE_RESULT", result);
-            mContext.startActivity(intent);
-        }
-    };
-
-
-
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
 
-        MainScreenOverviewItem data = mDataset.get(position);
+        // TODO wenop 把对应数据取出来, 然后设置view
+//        Object data = mDataset.get(position);
 //        holder.mAvatar.setImageResource(  );
-        holder.mNickName.setText(data.mNickName);
-
+//        holder.mNickName.setText(data.mNickName);
         holder.mAvatar.setOnClickListener(onAvatarClickListener);
 
-        //评论按钮
-        holder.mView.findViewById(R.id.group_comment)
-                .setOnClickListener(onCommentClickListener);
-
-
+        // TODO 长按头像可以at人
+        holder.mAvatar.setOnLongClickListener(null);
 
     }
 
