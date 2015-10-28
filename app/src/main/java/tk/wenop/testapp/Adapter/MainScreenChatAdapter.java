@@ -1,5 +1,7 @@
 package tk.wenop.testapp.Adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,13 +13,16 @@ import java.util.ArrayList;
 
 import tk.wenop.testapp.Overview.MainScreenOverviewItem;
 import tk.wenop.testapp.R;
+import tk.wenop.testapp.UI.PeopleDetailActivity;
 
 /**
  * Created by wenop_000 on 2015/10/12.
  */
 public class MainScreenChatAdapter extends RecyclerView.Adapter<MainScreenChatAdapter.ViewHolder> {
 
+
     private ArrayList<MainScreenOverviewItem> mDataset;
+    protected Context mContext;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -50,8 +55,9 @@ public class MainScreenChatAdapter extends RecyclerView.Adapter<MainScreenChatAd
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MainScreenChatAdapter(ArrayList<MainScreenOverviewItem> myDataset) {
+    public MainScreenChatAdapter(Context context, ArrayList<MainScreenOverviewItem> myDataset) {
         mDataset = myDataset;
+        mContext = context;
     }
 
     // Create new views (invoked by the layout manager)
@@ -72,6 +78,17 @@ public class MainScreenChatAdapter extends RecyclerView.Adapter<MainScreenChatAd
         return new ViewHolder(v);
     }
 
+    // 点击头像要跳转到用户详情页
+    private final View.OnClickListener onAvatarClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            Intent intent = new Intent(mContext, PeopleDetailActivity.class);
+//            TODO 把用户信息传过去?
+//            intent.putExtra("BAR_CODE_RESULT", result);
+            mContext.startActivity(intent);
+        }
+    };
+
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
@@ -81,6 +98,8 @@ public class MainScreenChatAdapter extends RecyclerView.Adapter<MainScreenChatAd
         MainScreenOverviewItem data = mDataset.get(position);
 //        holder.mAvatar.setImageResource(  );
         holder.mNickName.setText(data.mNickName);
+
+        holder.mAvatar.setOnClickListener(onAvatarClickListener);
 
 
     }

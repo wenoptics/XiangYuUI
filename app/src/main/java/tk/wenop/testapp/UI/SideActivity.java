@@ -135,7 +135,7 @@ public class SideActivity extends AppCompatActivity
         mainActDataSet.add(msovi_1);
 
         // specify an adapter
-        mainActRVAdapter = new MainScreenChatAdapter(mainActDataSet);
+        mainActRVAdapter = new MainScreenChatAdapter(SideActivity.this, mainActDataSet);
         mRecyclerView.setAdapter(mainActRVAdapter);
     }
 
