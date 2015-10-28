@@ -3,7 +3,6 @@ package tk.wenop.testapp.UI;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -16,12 +15,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ExpandableListView;
+
+import com.flyco.animation.BaseAnimatorSet;
+import com.flyco.animation.BounceEnter.BounceBottomEnter;
+import com.flyco.animation.SlideExit.SlideBottomExit;
 
 import java.util.ArrayList;
 
 import tk.wenop.testapp.Adapter.MainScreenChatAdapter;
 import tk.wenop.testapp.Overview.MainScreenOverviewItem;
 import tk.wenop.testapp.R;
+import tk.wenop.testapp.Util.animatedDialogUtils.ViewFindUtils;
 
 public class SideActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +36,10 @@ public class SideActivity extends AppCompatActivity
     private RecyclerView.LayoutManager mRVLayoutM;
 
     protected ArrayList<MainScreenOverviewItem> mainActDataSet;
+
+    private BaseAnimatorSet bas_in;
+    private BaseAnimatorSet bas_out;
+    private ExpandableListView elv;
 
     // 下拉刷新
     SwipeRefreshLayout mSwipeRefreshLayout;
@@ -69,14 +78,23 @@ public class SideActivity extends AppCompatActivity
             }
         });
 
+        View decorView = getWindow().getDecorView();
+        elv = ViewFindUtils.find(decorView, R.id.elv);
+        bas_in = new BounceBottomEnter();
+        bas_out = new SlideBottomExit();
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                // TODO wenop
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+
                 //  在此处允许用户发内容
+                //    弹出窗口
+                final NewContentBottomDialog dialog = new NewContentBottomDialog(SideActivity.this);
+                dialog.showAnim(bas_in)
+                        .show();
             }
         });
 
