@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 
 import com.flyco.dialog.widget.base.BottomBaseDialog;
-import com.skyfishjy.library.RippleBackground;
 
+import tk.wenop.rippleanimation.RippleBackground;
 import tk.wenop.testapp.R;
 import tk.wenop.testapp.Util.animatedDialogUtils.ViewFindUtils;
 
@@ -40,8 +40,30 @@ public class NewContentBottomDialog extends BottomBaseDialog<NewContentBottomDia
     @Override
     public void setUiBeforShow() {
 
+        audio_wave.setRippleDurationTime(3500);
+        audio_wave.setRippleAmount(1);
+        audio_wave.setRippleRepeatCount(0);
+        audio_wave.reloadAnimator();
         audio_wave.startRippleAnimation();
 
+        /// below just a test. wenop
+        /*
+        Handler handler = new Handler();
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                audio_wave.setRippleDurationTime(2500);
+                audio_wave.setRippleAmount(1);
+                audio_wave.setRippleRepeatCount(1);
+                audio_wave.setRippleColor(R.color.rippelColor);
+                audio_wave.reloadAnimator();
+                audio_wave.startRippleAnimation();
+//                T.showShort(context, "xx");
+            }
+        };
+        handler.postDelayed(runnable, 1000);
+
+        */
 
         audio_press_region.setOnClickListener(new View.OnClickListener() {
             @Override
