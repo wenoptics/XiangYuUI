@@ -3,7 +3,6 @@ package tk.wenop.testapp.UI;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MenuItem;
 
@@ -12,6 +11,7 @@ import java.util.ArrayList;
 import tk.wenop.testapp.Adapter.CommentAdapter;
 import tk.wenop.testapp.Overview.MainScreenOverviewItem;
 import tk.wenop.testapp.R;
+import tk.wenop.testapp.Util.WrappingRecyclerViewLayoutManager;
 
 public class CommentActivity extends AppCompatActivity {
 
@@ -43,7 +43,9 @@ public class CommentActivity extends AppCompatActivity {
         // in content do not change the layout size of the RecyclerView
 //        mRecyclerView.setHasFixedSize(true);
 
-        mRVLayoutM = new LinearLayoutManager(this);
+        // 用这个WrappingRecyclerViewLayoutManager改版的LayoutManager是因为我需要让
+        //    这个recyclerView的内容展开(全局滚动)
+        mRVLayoutM = new WrappingRecyclerViewLayoutManager(this);
         mRecyclerView.setLayoutManager(mRVLayoutM);
 
         commentDataSet = new ArrayList<>();

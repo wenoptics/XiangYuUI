@@ -36,4 +36,7 @@ dependencies {
     /// circle imageView
     compile 'de.hdodenhof:circleimageview:2.0.0'
 
+    /// 环形波浪动画
+    compile 'com.skyfishjy.ripplebackground:library:1.0.1'
+
 }
